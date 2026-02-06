@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>💖 Para Sheila</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  font-family:'Arial', sans-serif;
+  text-align:center;
+  background:linear-gradient(270deg,#ff9a9e,#fad0c4,#fbc2eb,#a6c1ee,#ffd6e0);
+  background-size:1000% 1000%;
+  animation:bg 18s ease infinite;
+  overflow:hidden;
+}
+
+@keyframes bg{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+h2{
+  color:#fff;
+  text-shadow:0 0 12px rgba(255,105,180,0.9);
+  margin-bottom:20px;
+}
+
+button{
+  padding:15px 35px;
+  margin:10px;
+  border:none;
+  border-radius:30px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.yes{
+  background:#ff4d6d;
+  color:white;
+}
+
+.no{
+  background:#ffffff;
+}
+
+.effect{
+  position:fixed;
+  top:-20px;
+  animation:fall 6s linear;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh);}
+}
+
+#message{
+  color:white;
+  font-size:19px;
+  margin-top:25px;
+  max-width:90%;
+  line-height:1.6;
+  min-height:140px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>✨ Sheila… ¿quieres compartir este 14 de febrero conmigo? ✨</h2>
+
+<button class="yes" onclick="yesAnswer()">Sí 💖</button>
+<button class="no" onclick="noAnswer()">No 🙈</button>
+
+<div id="message"></div>
+
+<script>
+let effects;
+let i = 0;
+
+const phrases = [
+  "Sheila, eres mi hermana de otra sangre 💗",
+  "Tu amistad me ha salvado en momentos donde ni yo sabía cómo seguir ✨",
+  "Has estado presente incluso cuando el mundo se sentía pesado",
+  "Tal vez esta fecha no siempre sea fácil…",
+  "pero quiero que vivas, que sonrías y que disfrutes 🌸",
+  "quiero que sepas que no estás sola",
+  "aquí estoy y estaré siempre que me necesites 🤍",
+  "te admiro más de lo que a veces sé decir",
+  "gracias por ser mi lugar seguro",
+  "y si te parece bien…",
+  "¿te gustaría que ese día cenemos juntas por videollamada? 🍽️📱",
+  "aunque sea a la distancia, me encantaría compartir ese momento contigo",
+  "Te quiero mucho, Sheila 🫶"
+];
+
+function yesAnswer(){
+  i = 0;
+  document.getElementById("message").innerHTML = "";
+  showText();
+
+  if(!effects){
+    effects = setInterval(createEffect, 250);
+  }
+
+  window.open(
+    "https://www.youtube.com/watch?v=hhrbnGOnxUA",
+    "_blank"
+  );
+}
+
+function showText(){
+  if(i < phrases.length){
+    document.getElementById("message").innerHTML += phrases[i] + "<br><br>";
+    i++;
+    setTimeout(showText, 1300);
+  }
+}
+
+function noAnswer(){
+  const btn = document.querySelector(".no");
+  btn.style.transform =
+    `translate(${Math.random()*70-35}px, ${Math.random()*70-35}px)`;
+}
+
+function createEffect(){
+  const el = document.createElement("div");
+  el.className = "effect";
+  el.innerHTML = Math.random() > 0.5 ? "💖" : "✨";
+  el.style.left = Math.random()*100 + "vw";
+  el.style.fontSize = (Math.random()*28+14)+"px";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),6000);
+}
+</script>
+
+</body>
+</html>
